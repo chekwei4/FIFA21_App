@@ -18,7 +18,7 @@ from PIL import Image
 import base64
 from bokeh.models.widgets import Div
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="Chek's FIFA21 App")
 image = Image.open('cover_pic.jpeg')
 st.image(image)
 st.title("FIFA21 Players Analysis⚽")
