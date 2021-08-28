@@ -15,24 +15,60 @@ import plotly.express as px
 import logging
 from sys import exit
 from PIL import Image
+import base64
+from bokeh.models.widgets import Div
 
 st.set_page_config(layout="wide")
 image = Image.open('cover_pic.jpeg')
 st.image(image)
-st.title("FIFA21 Players Analysis")
+st.title("FIFA21 Players Analysis⚽")
 st.markdown("This app explores unsupervised clustering techniques to cluster **FIFA21 players**!")
+
+"""
+1. Choose between clustering techniques
+2. Select Number of Clusters
+3. Set players' overall range
+4. Observe which players are "more similar" than the rest
+---
+"""
+
+col1, col2 = st.columns(2)
+open_colab = col1.button("🚀 EDA in Google Colab") 
+open_github = col1.button("💻 Project Github") 
+
+if open_colab:
+    print("opening eda...")
+    # webbrowser.open_new_tab("https://colab.research.google.com/drive/1TSczMMp1Rya-ib6tE__lsP32pqm9TB45?usp=sharing")
+    js = "window.open('https://colab.research.google.com/drive/1gtVNCDrjNk1yQCwCL21zIPHLkp7LdWvV?usp=sharing')"
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
+
+if open_github:
+    print("opening git...")
+    # webbrowser.open_new_tab("https://github.com/chekwei4/Titanic_App")
+    js = "window.open('https://github.com/chekwei4/FIFA21_App')"
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
 
 col1 = st.sidebar
 col1.header('Clustering Techniques')
-cluster_method = col1.selectbox('Select Clusterng', ('KMeans', 'Hierarchical'))
+cluster_method = col1.selectbox('Select Clustering Techniques', ('KMeans', 'Hierarchical'))
 
-col1.header('Select Number of Clusters')
-seed = col1.radio("Select Clusters", (3, 4, 5))
+col1.header('Select Teams')
+seed = col1.radio("Select Number of Clusters", ("3 - GK, Defender, Forward", "4 - GK, Defender, Midfielder, Forward", "5 - GK, Defender, D.Midfielder, A.Midfielder, Forward"))
 
 col1.header('Players Overall')
 overall_range = col1.slider(label="Overall Range:", min_value=0, value=(75, 85), max_value=99)
 low_range = overall_range[0]
 up_range = overall_range[1]
+
+col1.markdown('___')
+col1.text("Thanks for dropping by...")
+col1.markdown('Created by [Chekwei](https://github.com/chekwei4/)')
+col1.markdown('Other projects [Here](https://chekwei4.github.io/Chek_Wei_Portfolio/)')
+print("code runs successfully...")
 
 def main():
     try:
@@ -40,7 +76,6 @@ def main():
     except IOError:
         logging.exception('data not found...preparing data now...')
         prepare_data()
-
     try:
         df = filter_players_overall(df, low_range, up_range)
         df_clustered = run_clustering(df, cluster_method)
@@ -51,16 +86,29 @@ def main():
                                     "dribbling", "defending", "physic"], axis=1, inplace=True)
         # df.insert([0,1], "features_bring_front", features_bring_front)
         df = pd.concat([features_bring_front, df], axis=1)
+        st.subheader("Players Data")
         st.dataframe(df)
+        download = st.button(label="💾 Download CSV")
+        if download:
+            csv = df.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # some strings
+            href = f'<a href="data:file/csv;base64,{b64}" download="players.csv">Download csv file</a>'
+            st.markdown(file_download(df), unsafe_allow_html=True)
         if df_clustered is not None:
             fig = plot_cluster(df_clustered)
-            st.subheader("Display Clustering...")
+            st.subheader("Display Clustering")
             st.plotly_chart(fig)
         else:
             st.text("Clustering technique is not ready...come back soon!")
     except ValueError:
         logging.exception('pls select wider range for overall')
         st.text("pls select wider range for overall...")
+
+def file_download(df):
+    csv = df.to_csv().encode()
+    b64 = base64.b64encode(csv).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="players.csv" target="_blank">Export CSV here</a>'
+    return href
 
 def plot_cluster(df_clustered):
     fig = px.scatter(df_clustered, x="X", y="y", color="label", hover_name="short_name")
@@ -81,7 +129,14 @@ def run_clustering(df, cluster_method):
     df_pca = pd.DataFrame(df_pca)
     df_clustered = None
     if cluster_method == "KMeans":
-        kmeans = KMeans(n_clusters=seed).fit(df_pca)
+        seed_num = 0
+        if seed == "3 - GK, Defender, Forward":
+            seed_num=3
+        if seed == "4 - GK, Defender, Midfielder, Forward":
+            seed_num=4
+        if seed == "5 - GK, Defender, D.Midfielder, A.Midfielder, Forward":
+            seed_num=5
+        kmeans = KMeans(n_clusters=seed_num).fit(df_pca)
         labels = kmeans.labels_
         labels = pd.DataFrame(labels)
         df_clustered = pd.concat([df_pca, labels, df["short_name"]], axis=1)
