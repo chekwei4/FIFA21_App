@@ -30,7 +30,7 @@ Through various clustering techniques, we could then find out which players are 
 pandas, numpy, streamlit, scikit_learn, plotly
 
 # Data
-Data was extracted from [Kaggle]("https://www.kaggle.com/stefanoleone992/fifa-21-complete-player-dataset"). Data available includes FIFA15 all the way to FIFA21. In this project, analysis was conducted on FIFA21 players only.
+Data was extracted from [Kaggle](https://www.kaggle.com/stefanoleone992/fifa-21-complete-player-dataset). Data available includes FIFA15 all the way to FIFA21. In this project, analysis was conducted on FIFA21 players only.
 
 # Data Cleaning
 1. Cleaning up positional attributes. 
@@ -45,7 +45,7 @@ We will also drop features that are not beneficial to the clustering techniques.
 4. Imputing missing values
 Certain features are only reserved to describe GKs. `gk_diving`,`gk_handling`,`gk_kicking`,`gk_reflexes`,`gk_speed`,`gk_positioning`
 We would impute zeros for these features, for all the non-GK players. 
-Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic` also have missing values. We would use sci-kit learn's [iterative imputer]("https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html") to impute these missing values. 
+Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic` also have missing values. We would use sci-kit learn's [iterative imputer](https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html) to impute these missing values. 
 
 
 # Clustering Algorithms
@@ -64,7 +64,7 @@ Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic`
 - Ederson and Neuer are more similar than other goalies. 
 
 # Web Application
-App is currently deployed free on [heroku]("https://chek-fifa21-app.herokuapp.com/")
+App is currently deployed free on [heroku](https://chek-fifa21-app.herokuapp.com/). 
 
 <p align="center">
     <img src="./app_pic.png">
@@ -74,11 +74,11 @@ App is currently deployed free on [heroku]("https://chek-fifa21-app.herokuapp.co
     <img src="./fifa_cluster.png">
 </p>
 
+User is able to mouse over any data points, and players' name will be display as hover text. 
+
 # Other info
-[Google Colab]("https://colab.research.google.com/drive/1gtVNCDrjNk1yQCwCL21zIPHLkp7LdWvV?usp=sharing") for EDA
+[Google Colab](https://colab.research.google.com/drive/1gtVNCDrjNk1yQCwCL21zIPHLkp7LdWvV?usp=sharing) for EDA
 
-[Project Github]("https://github.com/chekwei4/FIFA21_App")
+[Project Github](https://github.com/chekwei4/FIFA21_App)
 
-[My other projects]("https://chekwei4.github.io/Chek_Wei_Portfolio/")
-
-# 
+[My other projects](https://chekwei4.github.io/Chek_Wei_Portfolio/)
