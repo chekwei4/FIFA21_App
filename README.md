@@ -9,20 +9,45 @@ Explore Unsupervised techniques to cluster FIFA21 players together.
 
 2. Select Number of Clusters
 
-3. Set players' overall range
+- `Clusters = 3`, one can expect to see clusters of GKs, Defenders, Attackers 
 
-4. Observe which players are "more similar" than the rest
+- `Clusters = 4`, one can expect to see clusters of GKs, Defenders, Midfielders, Forwards
+
+- `Clusters = 5`, one can expect to see clusters of GKs, Defenders, Defensive Midfielders, Attacking Midfielders, Forwards
+
+1. Set players' overall range to determine dataset
+
+2. Observe which players are "more similar" than the rest
 
 # Project Inspirations
-- First and foremost, it's for me to experience with all the unsupervised clustering algorithms, as most of the times I have been working on supervised algorithms. 
+- Firstly, it's for me to learn and experience with all the unsupervised clustering algorithms, as most of the times I have been working on supervised algorithms. 
 
-- Secondly, as a FIFA player myself, most of the times I realised we will try to look for "alternatives" for our team players. Or, when we are trying to purchase players during transfer windows, we always try to look for similar alternatives that are better bargains. 
+- Secondly, as a leisure FIFA player myself, I emphatize that most of the times we will try to look for "alternatives" for our team players in improve our team. Or, when we are trying to purchase players during transfer windows, we always try to look for similar alternatives that are better bargains. This is especially so when we want to find players alike for legendary players like Leo Messi or Cristiano Ronaldo. 
+
+Through various clustering techniques, we could then find out which players are "more similar" to each other. 
+
+# Python Packages
+pandas, numpy, streamlit, scikit_learn, plotly
 
 # Data
 Data was extracted from [Kaggle]("https://www.kaggle.com/stefanoleone992/fifa-21-complete-player-dataset"). Data available includes FIFA15 all the way to FIFA21. In this project, analysis was conducted on FIFA21 players only.
 
-# Python Packages
-pandas, numpy, streamlit, scikit_learn, plotly
+# Data Cleaning
+1. Cleaning up positional attributes. 
+There are 20+ features which describe each players' capability to adapt to a particular position, when assigned. Eg. `"ST"` means striker, and players like Ronaldo has `"ST"` of `"91+1"` as a string, and Messi has `"89+3"` as a string. So the first task of data cleaning is to convert these values into an integer - Ronaldo's `"ST"` will become `92`, and Messi's will become `92` too. 
+
+2. Drop non-numerical features
+As the clusterng analysis aims to cluster players into groups, based on their physical attributes, we would discard the non-numerical features. Eg. `"long_name"`, `"nationality"`. `"club_name"`, `"player_positions"` etc. 
+
+3. Drop irrelevant features
+We will also drop features that are not beneficial to the clustering techniques. Eg. `"value_eur"`, `"wage_eur"`, `"team_jersey_number"` etc. 
+
+4. Imputing missing values
+Certain features are only reserved to describe GKs. `gk_diving`,`gk_handling`,`gk_kicking`,`gk_reflexes`,`gk_speed`,`gk_positioning`
+We would impute zeros for these features, for all the non-GK players. 
+Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic` also have missing values. We would use sci-kit learn's [iterative imputer]("https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html") to impute these missing values. 
+
+
 
 
 # Deployed on Heroku
@@ -35,3 +60,5 @@ https://chek-fifa21-app.herokuapp.com/
 [Project Github]("https://github.com/chekwei4/FIFA21_App")
 
 [My other projects]("https://chekwei4.github.io/Chek_Wei_Portfolio/")
+
+# 
