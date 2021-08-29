@@ -60,7 +60,7 @@ Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic`
 
 
 # Clustering Algorithms
-1. The first algorithm explored is K-Means clustering. Before applying K-Means, data underwent PCA to reduce dimensionalities to two. 
+1. The first algorithm explored is [K-Means clustering](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html). Before applying K-Means, data underwent [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html?highlight=pca#sklearn.decomposition.PCA) to reduce dimensionalities to two. 
 
 
 # Interesting Findings
@@ -88,6 +88,15 @@ App is currently deployed free on [heroku](https://chek-fifa21-app.herokuapp.com
 After selecting clusterng algorithm, number of clusters to generate, and players' overall range, a dataframe will be displayed. User could scroll around and view the players' attributes in table form. If required, user could export the data as .csv to explore locally. 
 
 User is able to mouse over any data points, and players' name will be display as hover text. 
+
+# Future Enhancement
+- To implement hierarchical clustering algorithm
+
+- Allow users to import data (especially so when FIFA22 is about to be released)
+
+- Scrap data of female football players and conduct similar analysis
+
+- Extend project inspiration to other sports
 
 # Other info
 [Google Colab](https://colab.research.google.com/drive/1gtVNCDrjNk1yQCwCL21zIPHLkp7LdWvV?usp=sharing) for EDA
