@@ -24,7 +24,13 @@ Explore Unsupervised techniques to cluster FIFA21 players together.
 
 - Secondly, as a leisure FIFA player myself, I emphatize that most of the times we will try to look for "alternatives" for our team players in improve our team. Or, when we are trying to purchase players during transfer windows, we always try to look for similar alternatives that are better bargains. This is especially so when we want to find players alike for legendary players like Leo Messi or Cristiano Ronaldo. 
 
+<p align="center">
+    <img src="./ronaldo.png">
+</p>
+
 Through various clustering techniques, we could then find out which players are "more similar" to each other. 
+
+This project is also inspired by Youtuber @Import Data. Feel free to head over to his channel to check on his other works. 
 
 # Python Packages
 pandas, numpy, streamlit, scikit_learn, plotly
@@ -73,6 +79,8 @@ App is currently deployed free on [heroku](https://chek-fifa21-app.herokuapp.com
 <p align="center">
     <img src="./fifa_cluster.png">
 </p>
+
+After selecting clusterng algorithm, number of clusters to generate, and players' overall range, a dataframe will be displayed. User could scroll around and view the players' attributes in table form. If required, user could export the data as .csv to explore locally. 
 
 User is able to mouse over any data points, and players' name will be display as hover text. 
 
