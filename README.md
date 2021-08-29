@@ -29,7 +29,7 @@ Explore Unsupervised techniques to cluster FIFA21 players together.
 </p>
 
 <p align="center">
-    <i> https://sofifa.com/player/20801/c-ronaldo-dos-santos-aveiro/210059/>
+    <i> https://sofifa.com/player/20801/c-ronaldo-dos-santos-aveiro/210059/
     </i>
 </p>
 
