@@ -48,11 +48,31 @@ We would impute zeros for these features, for all the non-GK players.
 Other features like `pace`,`shooting`,`passing`,`dribbling`,`defending`,`physic` also have missing values. We would use sci-kit learn's [iterative imputer]("https://scikit-learn.org/stable/modules/generated/sklearn.impute.IterativeImputer.html") to impute these missing values. 
 
 
+# Clustering Algorithms
+1. The first algorithm explored is K-Means clustering. Before applying K-Means, data underwent PCA to reduce dimensionalities to two. 
 
 
-# Deployed on Heroku
-https://chek-fifa21-app.herokuapp.com/
+# Interesting Findings
+- Algorithms work decently as expeceted, able to segregate players distinctly. We can see defenders getting labeled differently, and attackers getting labeled differently as well. 
 
+- Bruno Fernandes, Kevin De Bruyne and Roberto Firmino are three players are that closely similar to one another.
+
+- Pogba, Modric, Thiago are another three players that are closely similar. 
+
+- Neymar is more similar to Messi, than Ronaldo.
+
+- Ederson and Neuer are more similar than other goalies. 
+
+# Web Application
+App is currently deployed free on [heroku]("https://chek-fifa21-app.herokuapp.com/")
+
+<p align="center">
+    <img src="./app_pic.png">
+</p>
+
+<p align="center">
+    <img src="./fifa_cluster.png">
+</p>
 
 # Other info
 [Google Colab]("https://colab.research.google.com/drive/1gtVNCDrjNk1yQCwCL21zIPHLkp7LdWvV?usp=sharing") for EDA
