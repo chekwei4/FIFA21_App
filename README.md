@@ -28,7 +28,12 @@ Explore Unsupervised techniques to cluster FIFA21 players together.
     <img src="./ronaldo.png">
 </p>
 
-Through various clustering techniques, we could then find out which players are "more similar" to each other. 
+<p align="center">
+    <i> https://sofifa.com/player/20801/c-ronaldo-dos-santos-aveiro/210059/>
+    </i>
+</p>
+
+With all these attributes above, and by using various clustering techniques, we could then find out which players are "more similar" to each other. 
 
 This project is also inspired by Youtuber @Import Data. Feel free to head over to his channel to check on his other works. 
 
